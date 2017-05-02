@@ -3,36 +3,38 @@
 // import jasmineNode from 'gulp-jasmine-node';
 
 const gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  gulpNodemon = require('gulp-nodemon'),
+  // gutil = require('gulp-util'),
+  // gulpNodemon = require('gulp-nodemon'),
   expressServer = require('gulp-express'),
   jasmineNode = require('gulp-jasmine-node'),
-  istanbulReport = require('gulp-istanbul-report'),
-  Server = require('karma').Server;
+  istanbulReport = require('gulp-istanbul');
+  // Server = require('karma').Server;
 
-const coverageFile = './coverage/coverage.json';
+// const coverageFile = './coverage/coverage.json';
 const jasmineNodeOpts = {
   timeout: 1000,
   includeStackTrace: false
 };
 
-gulp.task('default', () => {
-  return gutil.log('gulp is running');
-});
-
-// gulp.task('run-tests', () => {
-//   return gulp.src(['./tests/**/*inverted-index-test.js']).pipe(jasmineNode(jasmineNodeOpts));
+// gulp.task('default', () => {
+//   return gutil.log('gulp is running');
 // });
+
+gulp.task('run-tests', () => {
+  return gulp.src(['./tests/inverted-index-test.js'])
+  .pipe(istanbulReport())
+  .pipe(istanbulReport.hookRequire());
+});
 
 /**
  * Run test once and exit
  */
-gulp.task('run-tests', (done) => {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
+// gulp.task('run-tests', (done) => {
+//   new Server({
+//     configFile: __dirname + '/karma.conf.js',
+//     singleRun: true
+//   }, done).start();
+// });
 
 
 gulp.task('serve', () => {
@@ -40,18 +42,25 @@ gulp.task('serve', () => {
 });
 
 gulp.task('coverage', ['run-tests'], () => {
-  gulp.src(coverageFile)
-    .pipe(istanbulReport({
-      reporters: [
-        'text-summary',
-        {
-          name: 'json',
-          file: 'cov.json',
-          dir: './coverage'
-        }
-      ]
-    }));
+  gulp.src(['.src/inverted-index.js'])
+    .pipe(jasmineNode(jasmineNodeOpts))
+    .pipe(istanbulReport.writeReports())
+    .pipe(istanbulReport.enforceThresholds({ thresholds: { global: 90 } }));
 });
+
+// gulp.task('coverage', ['run-tests'], () => {
+//   gulp.src(coverageFile)
+//     .pipe(istanbulReport({
+//       reporters: [
+//         'text-summary',
+//         {
+//           name: 'json',
+//           file: 'cov.json',
+//           dir: './coverage'
+//         }
+//       ]
+//     }));
+// });
 
 // gulp.task('js', ['jscs', 'jshint'], () => {
 //   return gulp
