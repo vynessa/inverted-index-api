@@ -1,4 +1,4 @@
-const invertedIndex = require('../src/inverted-index.js').InvertedIndex();
+const invertedIndex = require('../src/inverted-index.js').InvertedIndex;
 // const invertedIndex = new InvertedIndex();
 const validFile = [
   {
@@ -37,7 +37,7 @@ const empty = [
 
 describe('Inverted Index Suite', () => {
   describe('The inverted index isValid method', () => {
-    const validBook = invertedIndex.isValid(book);
+    const validBook = invertedIndex.isValid(books);
 
     it('should return type of object', () => {
       expect(validBook instanceof Object).toBeTruthy();
