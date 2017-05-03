@@ -1,62 +1,34 @@
-const invertedIndex = require('../src/inverted-index.js').InvertedIndex;
+const fs = require('fs');
 // const invertedIndex = new InvertedIndex();
-const validFile = [
-  {
-    "title": "dsdsdsd",
-    "text": "dsdsdsd"
-  },
-  {
-    "title": "sdsdsds",
-    "text": "sdsdsd"
-  }
-];
+const invertedIndex = require('../src/inverted-index.js').InvertedIndex;
+const validFile = require('../fixtures/validFile.json'),
+  invalidFile = require('../fixtures/invalidFile.json'),
+  emptyFile = require('../fixtures/emptyFile.json'),
+  malformedFile = require('../fixtures/malformedFile.json'),
+  news = require('../fixtures/news.json');
 
-const malformed = [
-  {
-    "ti": "dsdsdsd",
-    "tet": "dsdsdsd"
-  },
-  {
-    "ti": "sdsdsds",
-    "tt": "sdsdsd"
-  }
-];
-
-const invalid = ['cold'];
-
-const empty = [
-  {
-    "title": "",
-    "text": ""
-  },
-  {
-    "title": "",
-    "text": ""
-  }
-];
-
-describe('Inverted Index Suite', () => {
+describe('Inverted Index Suite:', () => {
   describe('The inverted index isValid method', () => {
-    const validBook = invertedIndex.isValid(books);
+    // const validBook = invertedIndex.isValid();
 
     it('should return type of object', () => {
-      expect(validBook instanceof Object).toBeTruthy();
+      expect(invertedIndex.isValid instanceof Object).toBeTruthy();
     });
 
-    it('should return valid JSON for valid books', () => {
-      expect(validBook(validFile)).toEqual('Valid JSON');
+    it('should return true if file has property "title" and "text"', () => {
+      expect(invertedIndex.isValid(news)).toEqual('Valid JSON');
     });
 
-    it('should return Invalid JSON for invalid books', () => {
-      expect(validBook(invalid)).toEqual('Valid JSON');
+    it('should return false for files without property "title" and "text"', () => {
+      expect(invertedIndex.isValid(invalidFile)).toEqual('Invalid JSON');
     });
 
-    it('should return Malformed JSON for Malformed books', () => {
-      expect(validBook(malformed)).toEqual('Malformed JSON');
+    it('should return false if the file is Malformed', () => {
+      expect(invertedIndex.isValid(malformedFile)).toEqual('Malformed JSON');
     });
 
-    it('should return Empty JSON for Empty books', () => {
-      expect(validBook(empty)).toEqual('Empty JSON');
+    it('should return false for Empty JSON files', () => {
+      expect(invertedIndex.isValid(emptyFile)).toEqual('Empty JSON');
     });
   });
 });
