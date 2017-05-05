@@ -1,4 +1,4 @@
-const fs = require('fs');
+// const fs = require('fs');
 // const invertedIndex = new InvertedIndex();
 const invertedIndex = require('../src/inverted-index.js').InvertedIndex;
 const validFile = require('../fixtures/validFile.json'),
@@ -29,6 +29,36 @@ describe('Inverted Index Suite:', () => {
 
     it('should return false for Empty JSON files', () => {
       expect(invertedIndex.isValid(emptyFile)).toEqual('Empty JSON');
+    });
+  });
+
+  // describe('Read File function', () => {
+  //   it('should', () => {
+
+  //   });
+
+  //   it('should', () => {
+
+  //   });
+  // });
+
+  describe('Read File function', () => {
+    it('should', () => {
+
+    });
+
+    it('should', () => {
+
+    });
+  });
+
+  describe('Tokenize', () => {
+    it('should return in an array the title plus text content for each file', () => {
+
+    });
+
+    it('should', () => {
+
     });
   });
 });
