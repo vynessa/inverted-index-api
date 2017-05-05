@@ -1,14 +1,19 @@
-// import gulp from 'gulp';
-// import gutil from 'gulp-util';
-// import jasmineNode from 'gulp-jasmine-node';
+import gulp from 'gulp';
+import gutil from 'gulp-util';
+import jasmineNode from 'gulp-jasmine-node';
+import istanbul from 'gulp-istanbul';
+import istanbulReport from 'gulp-istanbul-report';
+import gulpCoveralls from 'gulp-coveralls';
+import babelRegister from 'babel-register';
 
-const gulp = require('gulp'),
-  // gulpNodemon = require('gulp-nodemon'),
-  expressServer = require('gulp-express'),
-  jasmineNode = require('gulp-jasmine-node'),
-  istanbul= require('gulp-istanbul'),
-  istanbulReport= require('gulp-istanbul-report'),
-  gulpCoveralls = require('gulp-coveralls');
+// const gulp = require('gulp'),
+//   // gulpNodemon = require('gulp-nodemon'),
+//   expressServer = require('gulp-express'),
+//   jasmineNode = require('gulp-jasmine-node'),
+//   istanbul = require('gulp-istanbul'),
+//   istanbulReport = require('gulp-istanbul-report'),
+//   gulpCoveralls = require('gulp-coveralls'),
+//   babelRegister = require('babel-register');
 
   // Server = require('karma').Server;
 
@@ -37,7 +42,7 @@ gulp.task('test', ['pre-test'], () => {
   gulp.src(['tests/inverted-index-test.js'])
     .pipe(jasmineNode(jasmineNodeOpts))
     .pipe(istanbul.writeReports());
-})
+});
 
 gulp.task('coverage', ['test'], () => {
   gulp.src('test/coverage/**/lcov.info')

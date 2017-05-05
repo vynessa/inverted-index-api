@@ -7,7 +7,7 @@ dotenv.config();
 
 const port = process.env.PORT_TEST;
 
-app.use(express.static(__dirname + '/src'))
+app.use(express.static(__dirname + '/src'));
 app.get('/', (res, req) => {
   res.render('index');
 });
