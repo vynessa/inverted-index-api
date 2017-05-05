@@ -1,3 +1,4 @@
+import fs from 'fs';
 /**
  * Inverted-index class
  * @class
@@ -8,10 +9,14 @@ class InvertedIndex {
   * @constructor
   */
   constructor() {
-    this.allFiles = {};
+    this.allFiles = [];
     this.books = {};
   }
-
+  /**
+   * Validate books in a file
+   * @param {object} books
+   * @returns {sring} 'Valid JSON'
+   */
   static isValid(books) {
     if (books instanceof Object) {
       let answer = 'Empty JSON';
@@ -24,12 +29,13 @@ class InvertedIndex {
         return answer;
       });
       return answer;
-    } else {
-      return 'Invalid JSON';
     }
+    return 'Invalid JSON';
   }
+
+
 
 }
 
 
-module.exports={InvertedIndex};
+module.exports = InvertedIndex;
