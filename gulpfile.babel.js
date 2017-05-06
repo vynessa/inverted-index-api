@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import gutil from 'gulp-util';
 import jasmineNode from 'gulp-jasmine-node';
 import istanbul from 'gulp-istanbul';
 import istanbulReport from 'gulp-istanbul-report';
