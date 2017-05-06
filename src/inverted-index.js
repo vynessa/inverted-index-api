@@ -84,7 +84,7 @@ class InvertedIndex {
    * @function
    * @param {string} fileName
    * @param {array} fileContent
-   * @returns
+   * @returns {object} indexed
   */
   createIndex(fileName, fileContent) {
     const indexed = {};
