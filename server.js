@@ -1,6 +1,6 @@
-const express = require('express'),
-  app = express(),
-  dotenv = require('dotenv');
+import express from 'express';
+import app from express();
+import dotenv from 'dotenv';
 
 // make express look in the public directory
 dotenv.config();
