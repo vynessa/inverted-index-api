@@ -9,13 +9,14 @@ class InvertedIndex {
   * @constructor
   */
   constructor() {
-    this.allFiles = [];
-    this.books = {};
+    this.allIndices = {};
+    this.allFiles = {};
   }
   /**
    * Validate books in a file
+   * @function
    * @param {object} books
-   * @returns {sring} response
+   * @returns {string} response
    */
   isValid(books) {
     if (books instanceof Object) {
@@ -32,12 +33,13 @@ class InvertedIndex {
     }
     return 'Invalid JSON';
   }
-
   /**
    * Joins text and title and pushes into an Array
-   * @returns {string} result  
+   * @function
+   * @param {object} books
+   * @returns {string} result
   */
-  joinTextTitle(books) {
+  static joinTextTitle(books) {
     let result = [];
     let bookTitle = [];
     let bookText = [];
@@ -46,18 +48,56 @@ class InvertedIndex {
       bookText = books[book].text;
       result.push(bookTitle, bookText);
     });
+    // .join method converts result[array] to string
     result = result.join(' ').toLowerCase();
     return result;
   }
   /**
-   *  
+  * Remove duplicate word from tokens
+  * @function
+  * @param {array} words
+  * @returns {array} unique tokens
+  */
+  static removeDuplicates(words) {
+    return words.filter((value, index, self) => { 
+      return self.indexOf(value) === index;
+    });
+  }
+  /**
+   * Tokenize splits words into tokens and sorts them into an array
+   * @function
+   * @param {string} text
+   * @returns {array} tokens
   */
   tokenize(text) {
     let tokens = [];
-    tokens = this.joinTextTitle(text).split(' ').sort().map((words) => {
+    tokens = InvertedIndex.joinTextTitle(text).split(' ').sort().map((words) => {
       return words.replace(/([^\w]+)/g, '');
+    })
+    .filter((e) => {
+      return e;
     });
+    tokens = InvertedIndex.removeDuplicates(tokens);
     return tokens;
+  }
+  /** Create Index for each word in a given fileName
+   * @function
+   * @param {string} fileName
+   * @param {array} fileContent
+   * @returns
+  */
+  createIndex(fileName, fileContent) {
+    const indexed = {};
+    fileContent.forEach((book, index) => {
+      const arrOfWords = this.tokenize([book]);
+      arrOfWords.forEach((token) => {
+        if (!(token in indexed)) {
+          indexed[token] = [index];
+        }
+        indexed[token].push(index);
+      });
+    });
+    return indexed;
   }
 }
 
