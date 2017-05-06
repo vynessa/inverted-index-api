@@ -17,7 +17,6 @@ describe('Inverted Index Suite:', () => {
     const invalidBook = invObj.isValid(invalidFile);
     const malformedBook = invObj.isValid(malformedFile);
     const emptyBook = invObj.isValid(emptyFile);
-    // console.log('I m here', validBook)
 
     it('should return type of object', () => {
       expect(validBook).toEqual('Valid JSON');
@@ -67,7 +66,7 @@ describe('Inverted Index Suite:', () => {
   //   });
   // });
   describe('Tokenize function', () => {
-    it('should return in an array tokenize words for each file', () => {
+    it('should return in an array tokenized words for each file', () => {
       let book1 = [
         {
           'title': 'Alice in the wonder land',
