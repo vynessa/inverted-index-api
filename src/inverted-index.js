@@ -10,7 +10,7 @@ class InvertedIndex {
   */
   constructor() {
     this.allFiles = [];
-    this.allBooks = {};
+    this.books = {};
   }
   /**
    * Validate books in a file
@@ -37,29 +37,26 @@ class InvertedIndex {
    * Joins text and title and pushes into an Array
    * @returns {string} result  
   */
-  joinTextTitle() {
+  joinTextTitle(books) {
     let result = [];
     let bookTitle = [];
     let bookText = [];
-    Object.keys(this.books).forEach((book) => {
-      bookTitle = this.books[book].title;
-      bookText = this.books[book].text;
+    Object.keys(books).forEach((book) => {
+      bookTitle = books[book].title;
+      bookText = books[book].text;
       result.push(bookTitle, bookText);
     });
-    // .join method converts result array to string
     result = result.join(' ').toLowerCase();
     return result;
   }
   /**
    *  
   */
-  tokenize() {
+  tokenize(text) {
     let tokens = [];
-    tokens = this.joinTextTitle().split(' ').sort().map((words) => {
+    tokens = this.joinTextTitle(text).split(' ').sort().map((words) => {
       return words.replace(/([^\w]+)/g, '');
-      // console.log(words)
     });
-    // console.log(typeof tokens);
     return tokens;
   }
 }
