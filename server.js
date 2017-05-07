@@ -15,5 +15,5 @@ app.get('/', (res, req) => {
 });
 
 app.listen(port, () => {
-  console.log(`Magic happens on port http://localhost:' + ${port}`);
+  return (`Magic happens on port http://localhost:' + ${port}`);
 });
