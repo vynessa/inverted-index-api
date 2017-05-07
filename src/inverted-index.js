@@ -77,6 +77,7 @@ class InvertedIndex {
     .filter((e) => {
       return e;
     });
+
     tokens = InvertedIndex.removeDuplicates(tokens);
     return tokens;
   }
