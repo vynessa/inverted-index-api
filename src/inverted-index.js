@@ -59,7 +59,7 @@ class InvertedIndex {
   * @returns {array} unique tokens
   */
   static removeDuplicates(words) {
-    return words.filter((value, index, self) => { 
+    return words.filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
   }
