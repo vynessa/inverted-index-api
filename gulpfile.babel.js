@@ -1,18 +1,11 @@
 import gulp from 'gulp';
+import gulpNodemon from 'gulp-nodemon';
+import expressServer from 'gulp-express';
 import jasmineNode from 'gulp-jasmine-node';
 import istanbul from 'gulp-istanbul';
 import istanbulReport from 'gulp-istanbul-report';
 import gulpCoveralls from 'gulp-coveralls';
 import babelRegister from 'babel-register';
-
-// const gulp = require('gulp'),
-//   // gulpNodemon = require('gulp-nodemon'),
-//   expressServer = require('gulp-express'),
-//   jasmineNode = require('gulp-jasmine-node'),
-//   istanbul = require('gulp-istanbul'),
-//   istanbulReport = require('gulp-istanbul-report'),
-//   gulpCoveralls = require('gulp-coveralls'),
-//   babelRegister = require('babel-register');
 
   // Server = require('karma').Server;
 
