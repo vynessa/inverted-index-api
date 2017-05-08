@@ -1,40 +1,92 @@
+/* eslint no-undef: 0 */
 // import fs from 'fs';
 import validFile from '../fixtures/validFile.json';
 import invalidFile from '../fixtures/invalidFile.json';
 import emptyFile from '../fixtures/emptyFile.json';
 import malformedFile from '../fixtures/malformedFile.json';
 import InvertedIndex from '../src/inverted-index';
-// const invertedIndex = require('../src/inverted-index.js');
 
 // Create an instance of InvertedIndex class
 const invObj = new InvertedIndex();
 
+// Test Parameter for createIndex test
+const createdIndex =
+  { validFile:
+  { go: [0],
+    he: [0],
+    is: [0],
+    premier: [0],
+    queen: [0],
+    to: [0],
+    up: [0],
+    yes: [0],
+    broken: [1],
+    colour: [1],
+    crayons: [1],
+    poem: [1],
+    still: [1] } };
+
+const searchResult =
+  { validFile:
+  { crayons: [1],
+    poem: [1],
+    colour: [1] } };
+
 describe('Inverted Index Suite:', () => {
   // Parameters for isValid method tests
-  const validBook = invObj.isValid(validFile);
-  const invalidBook = invObj.isValid(invalidFile);
-  const malformedBook = invObj.isValid(malformedFile);
-  const emptyBook = invObj.isValid(emptyFile);
+  const validBook = InvertedIndex.isValid(validFile);
+  const invalidBook = InvertedIndex.isValid(invalidFile);
+  const malformedBook = InvertedIndex.isValid(malformedFile);
+  const emptyBook = InvertedIndex.isValid(emptyFile);
 
-  // describe('Read File function', () => {
-  //   it('should', () => {
+  describe('Inverted Index Method checker', () => {
+    it('should have `isValid` as a method', () => {
+      expect(InvertedIndex.isValid).toBeDefined('function');
+    });
 
-  //   });
+    it('should have `joinTextTitle` as a method', () => {
+      expect(InvertedIndex.joinTextTitle).toBeDefined('function');
+    });
 
-  describe('The inverted index isValid method', () => {
-    it('should return type of ', () => {
+    it('should have `removeDuplicates` as a method', () => {
+      expect(InvertedIndex.removeDuplicates).toBeDefined('function');
+    });
+
+    it('should have `tokenize` as a method', () => {
+      expect(InvertedIndex.tokenize).toBeDefined('function');
+    });
+
+    it('should have `flattenArray` as a method', () => {
+      expect(InvertedIndex.flattenArray).toBeDefined('function');
+    });
+
+    it('should have `sanitize` as a method', () => {
+      expect(InvertedIndex.sanitize).toBeDefined('function');
+    });
+
+    it('should have `createIndex` as a method', () => {
+      expect(invObj.createIndex).toBeDefined('function');
+    });
+
+    it('should have `searchIndex` as a method', () => {
+      expect(invObj.searchIndex).toBeDefined('function');
+    });
+  });
+
+  describe('Inverted index JSON Validation method', () => {
+    it('should return \'Valid JSON\' for valid JSON types', () => {
       expect(validBook).toEqual('Valid JSON');
     });
 
-    it('should return type of object', () => {
+    it('should return \'Invalid JSON\' for invalid JSON type', () => {
       expect(invalidBook).toEqual('Invalid JSON');
     });
 
-    it('should return type of object', () => {
+    it('should return \'Malformed JSON\' for malformed JSON type', () => {
       expect(malformedBook).toEqual('Malformed JSON');
     });
 
-    it('should return type of object', () => {
+    it('should return \'Empty JSON\' for empty JSON type', () => {
       expect(emptyBook).toEqual('Empty JSON');
     });
   });
@@ -58,7 +110,7 @@ describe('Inverted Index Suite:', () => {
     });
   });
 
-  describe('Remove duplicates word', () => {
+  describe('Remove duplicate words function', () => {
     it('should return only unique words in an array', () => {
       let getWords =
         ['broken',
@@ -102,7 +154,8 @@ describe('Inverted Index Suite:', () => {
 
   describe('Tokenize function', () => {
     it('should return in an array tokens for each file', () => {
-      let newBook = [
+      // Parameter to be used to test for correctness of the tokenize method
+      let newBook = [ 
         {
           'title': 'Alice in Wonderland',
           'text': 'I am not as lazy as Alice'
@@ -113,6 +166,7 @@ describe('Inverted Index Suite:', () => {
         }
       ];
 
+      // Expected result after newBook is passed into tokenize function
       const result =
         ['50',
           'a',
@@ -133,30 +187,26 @@ describe('Inverted Index Suite:', () => {
           'wonderland',
           'years'];
 
-      newBook = invObj.tokenize(newBook);
+      newBook = InvertedIndex.tokenize(newBook);
       expect(result).toEqual(newBook);
     });
   });
 
   describe('Create Index function', () => {
-    it('should return the accurate index for each word\'s  occurence in a book', () => {
-      const createdIndex =
-        { go: [0],
-          he: [0, 1],
-          is: [0],
-          premier: [0],
-          queen: [0],
-          to: [ 0 ],
-          up: [ 0 ],
-          yes: [ 0 ],
-          broken: [ 1 ],
-          colour: [ 1 ],
-          crayons: [ 1 ],
-          poem: [ 1 ],
-          still: [ 1 ] }
+    it('should return error message if JSON file is `Invalid`, `Malformed` or `empty` file.', () => {
+      expect(invObj.createIndex(invalidFile)).toEqual('Error: The file is not a correct JSON file!');
+    });
 
-        newFile = invObj.createIndex(validFile);
-        expect(createdIndex).toEqual(newFile);
+    it('should return in an object a file name as key, and accurate index for every word\'s  occurence in a book', () => {
+      const newFile = invObj.createIndex('validFile', validFile);
+      expect(createdIndex).toEqual(newFile);
+    });
+  });
+
+  describe('Search Index function', () => {
+    it('should return ', () => {
+      const newSearch = invObj.searchIndex(createdIndex, 'validFile', 'crayons', ['poem'], 'colour', ['not']);
+      expect(searchResult).toEqual(newSearch);
     });
   });
 });
