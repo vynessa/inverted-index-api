@@ -49,7 +49,7 @@ class InvertedIndex {
       result.push(bookTitle, bookText);
     });
     // .join method converts result[array] to string
-    result = result.join(' ').toLowerCase();
+    result = result.join(' ').toLowerCase()
     return result;
   }
   /**
