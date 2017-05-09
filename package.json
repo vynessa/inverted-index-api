@@ -38,7 +38,8 @@
     "jshint-stylish": "^2.2.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "url": "^0.11.0"
   },
   "dependencies": {
     "babel-register": "^6.24.1",
@@ -52,6 +53,7 @@
     "jshint": "^2.9.4",
     "karma": "^1.6.0",
     "karma-coverage": "^1.1.1",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "url": "^0.11.0"
   }
 }
