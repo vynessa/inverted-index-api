@@ -1,5 +1,8 @@
 /* eslint no-undef: 0 */
 // import fs from 'fs';
+import request from 'supertest';
+import express from 'express';
+
 import validFile from '../fixtures/validFile.json';
 import invalidFile from '../fixtures/invalidFile.json';
 import emptyFile from '../fixtures/emptyFile.json';
@@ -8,6 +11,8 @@ import InvertedIndex from '../src/inverted-index';
 
 // Create an instance of InvertedIndex class
 const invObj = new InvertedIndex();
+const app = express();
+
 
 // Test Parameter for createIndex test
 const createdIndex =
