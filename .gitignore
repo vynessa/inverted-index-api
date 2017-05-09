@@ -1,4 +1,4 @@
 .env
+.coveralls.yml
 /node_modules
 /coverage
-.coveralls.yml
