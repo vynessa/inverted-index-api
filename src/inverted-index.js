@@ -112,12 +112,12 @@ class InvertedIndex {
     return 'Error: The file is not a correct JSON file!';
   }
   /**
-   * Flattens an array of nested arrays to one array
+   * Merges search terms of different data types ginto one array
    * @function
    * @param {array} data
    * @return {array} data
    */
-  static flattenArray(data) {
+  static flattenSearchArray(data) {
     return data.reduce((a, b) => a.concat(b), []);
   }
   /**
@@ -137,7 +137,7 @@ class InvertedIndex {
    * @return {object} searchResult
   */
   searchIndex(index, fileName, ...searchTerm) {
-    searchTerm = InvertedIndex.flattenArray(searchTerm);
+    searchTerm = InvertedIndex.flattenSearchArray(searchTerm);
     const searchResult = {};
     const searchResultKey = {};
     let newSearchTerm = [];
@@ -147,12 +147,11 @@ class InvertedIndex {
     searchTerm.forEach((term) => {
       newSearchTerm.push(InvertedIndex.sanitize(term));
     });
-    newSearchTerm = InvertedIndex.flattenArray(newSearchTerm);
+    newSearchTerm = InvertedIndex.flattenSearchArray(newSearchTerm);
     newSearchTerm.forEach((word) => {
-      Object.keys(this.allIndices[fileName]).forEach((key) => {
-        this.allIndices[fileName][key];
+      Object.keys(index[fileName]).forEach((key) => {
         if (word === key) {
-          searchResultKey[word] = this.allIndices[fileName][key];
+          searchResultKey[word] = index[fileName][key];
         }
       });
     });
