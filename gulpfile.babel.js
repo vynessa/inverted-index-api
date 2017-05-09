@@ -5,6 +5,7 @@ import jasmineNode from 'gulp-jasmine-node';
 import istanbul from 'gulp-istanbul';
 import istanbulReport from 'gulp-istanbul-report';
 import gulpCoveralls from 'gulp-coveralls';
+import babel from 'gulp-babel';
 import babelRegister from 'babel-register';
 
   // Server = require('karma').Server;
@@ -21,7 +22,15 @@ gulp.task('run-tests', () => {
 });
 
 gulp.task('serve', () => {
-  expressServer.run(['server.js']);
+  gulpNodemon({
+    script: 'index.js',
+    ext: 'js html',
+    env: { 'NODE_ENV': process.env.NODE_ENV }
+  });
+  // gulp.src('index.js')
+  //   .pipe(babel())
+  //   .pipe(gulpNodemon());
+  // // expressServer.run('index.js');
 });
 
 gulp.task('pre-test', () => {
