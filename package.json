@@ -20,6 +20,7 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.17.1",
     "coveralls": "^2.13.1",
     "dotenv": "^4.0.0",
@@ -31,15 +32,12 @@
     "gulp-babel": "^6.1.2",
     "gulp-babel-istanbul": "^1.6.0",
     "gulp-coveralls": "^0.1.4",
+    "gulp-exit": "0.0.2",
+    "gulp-inject-modules": "^1.0.0",
     "gulp-istanbul": "^1.1.1",
     "gulp-istanbul-report": "0.0.1",
     "gulp-jasmine-node": "^1.0.7",
-    "gulp-jshint": "^2.0.4",
-    "gulp-util": "^3.0.8",
     "jasmine": "^2.6.0",
-    "jshint-stylish": "^2.2.1",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-jasmine": "^1.1.0",
     "supertest": "^3.0.0",
     "url": "^0.11.0"
   },
@@ -53,9 +51,6 @@
     "gulp-nodemon": "^2.2.1",
     "jasmine": "^2.6.0",
     "jasmine-node": "^1.14.5",
-    "jshint": "^2.9.4",
-    "karma": "^1.6.0",
-    "karma-coverage": "^1.1.1",
     "supertest": "^3.0.0",
     "url": "^0.11.0"
   }
