@@ -4,7 +4,8 @@
   "description": "An Inverted Index Api for implementing efficient search functionality for software applications.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp serve",
+    "test": "gulp coverage"
   },
   "repository": {
     "type": "git",
