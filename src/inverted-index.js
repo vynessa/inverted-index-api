@@ -161,3 +161,5 @@ class InvertedIndex {
 }
 
 module.exports = InvertedIndex;
+// export default InvertedIndex;
+// export default new InvertedIndex();

@@ -1,6 +1,6 @@
 /* eslint no-undef: 0 */
 // import fs from 'fs';
-import request from 'supertest';
+import supertest from 'supertest';
 import express from 'express';
 
 import validFile from '../fixtures/validFile.json';
@@ -11,8 +11,8 @@ import InvertedIndex from '../src/inverted-index';
 
 // Create an instance of InvertedIndex class
 const invObj = new InvertedIndex();
-const app = express();
-
+// const app = express();
+// const request = supertest(app);
 
 // Test Parameter for createIndex test
 const createdIndex =
@@ -61,8 +61,8 @@ describe('Inverted Index Suite:', () => {
       expect(InvertedIndex.tokenize).toBeDefined('function');
     });
 
-    it('should have `flattenArray` as a method', () => {
-      expect(InvertedIndex.flattenArray).toBeDefined('function');
+    it('should have `flattenSearchArray` as a method', () => {
+      expect(InvertedIndex.flattenSearchArray).toBeDefined('function');
     });
 
     it('should have `sanitize` as a method', () => {
@@ -79,7 +79,10 @@ describe('Inverted Index Suite:', () => {
   });
 
   describe('Inverted index JSON Validation method', () => {
-    it('should return \'Valid JSON\' for valid JSON types', () => {
+    it('should return \'Valid JSON\' for Valid json types', () => {
+      // request
+      //   .post('/api/create')
+      //   .attach('validBook', 'fixtures/validFile.json')
       expect(validBook).toEqual('Valid JSON');
     });
 
@@ -209,9 +212,14 @@ describe('Inverted Index Suite:', () => {
   });
 
   describe('Search Index function', () => {
-    it('should return ', () => {
+    it('should return the correct index for every search term', () => {
       const newSearch = invObj.searchIndex(createdIndex, 'validFile', 'crayons', ['poem'], 'colour', ['not']);
       expect(searchResult).toEqual(newSearch);
+    });
+
+    it('should return false if search not found in the file', () => {
+      const newSearch = invObj.searchIndex(createdIndex, 'validFile', 'air', 'bear', ['care']);
+      expect(newSearch).toEqual(false);
     });
   });
 });
