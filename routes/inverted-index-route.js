@@ -16,7 +16,7 @@ router.post('/api/search', (req, res) => {
   const filename = req.body.fileName;
   const searchTerms = req.body.searchTerms;
 
-  const searchResult = invController.searchIndex(index, filename, searchTerms)
+  const searchResult = invController.searchIndex(index, filename, ...searchTerms);
   res.json(searchResult);
 });
 
