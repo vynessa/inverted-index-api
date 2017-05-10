@@ -1,17 +1,17 @@
 import express from 'express';
-import InvertedIndex from '../src/inverted-index.js';
+import InvertedIndex from '../src/inverted-index';
 
 // Call an instance of Router from express
 const router = express.Router();
 const invController = new InvertedIndex();
 
-// Create route  
+// Create route
 router.post('/api/create', (req, res) => {
   invController.createIndex('ValidFile', req.body);
   res.json(invController.allIndices);
 });
 
-// Search route 
+// Search route
 router.post('/api/search', (req, res) => {
   const index = invController.allIndices;
   const filename = req.body.fileName;

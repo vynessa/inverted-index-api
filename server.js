@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 // Call an instance of express and store it in the app variable
 const app = express();
 
-// make express look in the public directory
 dotenv.config({ path: '.env' });
 
 // (TODO): Change port to avoid blinding the env variable on heroku

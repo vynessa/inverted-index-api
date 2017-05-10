@@ -25,12 +25,10 @@ class InvertedIndex {
         if (books[book].title !== undefined && books[book].text !== undefined) {
           if (books[book].title.length !== 0 && books[book].text.length !== 0) {
             response = 'Valid JSON';
-          } else {
-            response = 'Empty JSON';
           }
-        } else {
-          response = 'Malformed JSON';
+          response = 'Empty JSON';
         }
+        response = 'Malformed JSON';
       });
     }
     return response;
