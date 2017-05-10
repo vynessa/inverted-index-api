@@ -1,19 +1,31 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 
-const app = new express();
+const app = express();
+
+// Import InvertedIndex class
+// const 
 
 
 // make express look in the public directory
-dotenv.config();
+dotenv.config({ path: '.env' });
 
-const port = process.env.PORT_TEST;
+const port = process.env.PORT_DEV;
 
-app.use(express.static(`${__dirname} + /src`));
-app.get('/', (res, req) => {
-  res.render('index');
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static(`${__dirname}/src`));
+app.use(require('./routes/inverted-index-route.js'));
+
+// app.get('/', (res, req) => {
+//   res.render('index');
+// });
+
+// http.createServer();
 
 app.listen(port, () => {
-  return (`Magic happens on port http://localhost:' + ${port}`);
+  console.log(`Magic happens on port http://localhost:${port}`);
 });
+
+module.exports = app;
