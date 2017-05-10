@@ -23,7 +23,7 @@ class InvertedIndex {
     if (books instanceof Object) {
       Object.keys(books).forEach((book) => {
         if (books[book].title !== undefined && books[book].text !== undefined) {
-          if (books[book].title.length !== 0) {
+          if (books[book].title.length !== 0 && books[book].text.length !== 0) {
             response = 'Valid JSON';
           } else {
             response = 'Empty JSON';
@@ -112,7 +112,7 @@ class InvertedIndex {
     return 'Error: The file is not a correct JSON file!';
   }
   /**
-   * Merges search terms of different data types ginto one array
+   * Merges search terms of different data types into one array
    * @function
    * @param {array} data
    * @return {array} data
@@ -121,7 +121,7 @@ class InvertedIndex {
     return data.reduce((a, b) => a.concat(b), []);
   }
   /**
-   * Sanitize cleans up the search term passed in by the user
+   * Sanitize cleans up the search term(s ) passed in by the user
    * @function
    * @param {array} term
    * @return {array} term
