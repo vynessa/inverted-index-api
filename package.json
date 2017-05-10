@@ -19,6 +19,7 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
+    "body-parser": "^1.17.1",
     "coveralls": "^2.13.1",
     "dotenv": "^4.0.0",
     "eslint": "^3.19.0",
