@@ -172,13 +172,13 @@ describe('Inverted Index Suite:', () => {
     it('should return in an array tokens for each file', () => {
       // Parameter to be used to test for correctness of the tokenize method
       let newBook = [{
-          'title': 'Alice in Wonderland',
-          'text': 'I am not as lazy as Alice'
-        },
-        {
-          'title': 'Lady',
-          'text': 'The lady is 50 years old. SHe has a child'
-        }
+        'title': 'Alice in Wonderland',
+        'text': 'I am not as lazy as Alice'
+      },
+      {
+        'title': 'Lady',
+        'text': 'The lady is 50 years old. SHe has a child'
+      }
       ];
 
       // Expected result after newBook is passed into tokenize function

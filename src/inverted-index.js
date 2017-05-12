@@ -126,7 +126,6 @@ class InvertedIndex {
    * @returns {object} this.allIndices
    */
   createIndex(fileSpec) {
-    console.log(fileSpec);
     fileSpec.forEach((spec) => {
       const fileContent = spec.fileContent;
       const fileName = spec.filename;

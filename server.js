@@ -9,11 +9,10 @@ const app = express();
 dotenv.config({ path: '.env' });
 
 // (TODO): Change port to avoid blinding the env variable on heroku
-const port = process.env.PORT_DEV;
+const port = process.env.PORT || process.env.PORT_DEV;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static(`${__dirname}/src`));
 app.use(routes);
 
 app.listen(port, () => {

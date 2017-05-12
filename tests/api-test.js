@@ -10,7 +10,6 @@ describe('Api create route', () => {
   it('should respond with all indices in JSON format', (done) => {
     api
       .post('/api/create')
-      .attach('files')
       .expect('Content-Type', 'application/json; charset=utf-8')
       .expect(200, done);
   });
