@@ -1,4 +1,4 @@
-// import fs from 'fs';
+import fs from 'fs';
 /**
  * Inverted-index class
  * @class
@@ -13,22 +13,38 @@ class InvertedIndex {
     this.allFiles = {};
   }
   /**
-   * Validate books in a file
+   * Validate to check for JSON files and return its content
+   * @param {string} fileName
+   * @return {object} fileContent
+   */
+  validateFile(fileName) {
+    let fileContent = [];
+    try {
+      fileContent = JSON.parse(fs.readFileSync(`fixtures/${fileName}`, 'utf8'));
+    } catch (e) {
+      return 'Invalid Json';
+    }
+    return fileContent;
+  }
+  /**
+   * Validate books for the correct file structure a file
    * @function
    * @param {object} books
    * @returns {string} response
    */
   static isValid(books) {
-    let response = 'Invalid JSON';
+    let response = 'Invalid Json';
     if (books instanceof Object) {
       Object.keys(books).forEach((book) => {
         if (books[book].title !== undefined && books[book].text !== undefined) {
           if (books[book].title.length !== 0 && books[book].text.length !== 0) {
             response = 'Valid JSON';
+          } else {
+            response = 'Empty JSON';
           }
-          response = 'Empty JSON';
+        } else {
+          response = 'Malformed JSON';
         }
-        response = 'Malformed JSON';
       });
     }
     return response;
@@ -77,18 +93,48 @@ class InvertedIndex {
     .filter((e) => {
       return e;
     });
-
     tokens = InvertedIndex.removeDuplicates(tokens);
     return tokens;
   }
+  /**
+   * Uses Multer packageto store uploaded file, get upload file content and name
+   * @param {object} arrOfObjs
+   * @return {object} fileContentArr
+   */
+  getMulterJson(arrOfObjs) {
+    const fileNameFilePath = [];
+    const fileContentArr = [];
+    arrOfObjs.forEach((file) => {
+      fileNameFilePath.push({ filename: file.originalname, filepath: file.path });
+    });
+    fileNameFilePath.forEach((nameAndPath) => {
+      try {
+        const fileContent = JSON.parse(fs.readFileSync(nameAndPath.filepath, 'utf8'));
+        fileContentArr.push({
+          filename: nameAndPath.filename,
+          fileContent
+        });
+      } catch (err) {
+        return 'Cannot read an invalid Json';
+      }
+    });
+    return fileContentArr;
+  }
   /** Create Index for each word in a given fileName
    * @function
-   * @param {string} fileName
-   * @param {array} fileContent
+   * @param {object} fileSpec
    * @returns {object} this.allIndices
    */
-  createIndex(fileName, fileContent) {
-    if (InvertedIndex.isValid(fileContent) === 'Valid JSON') {
+  createIndex(fileSpec) {
+    console.log(fileSpec);
+    fileSpec.forEach((spec) => {
+      const fileContent = spec.fileContent;
+      const fileName = spec.filename;
+
+      const report = InvertedIndex.isValid(fileContent);
+      if (report !== 'Valid JSON') {
+        return report;
+      }
       const indexed = {};
       fileContent.forEach((book, index) => {
         const arrOfWords = InvertedIndex.tokenize([book]);
@@ -104,10 +150,10 @@ class InvertedIndex {
       if (!Object.prototype.hasOwnProperty.call(this.allIndices, fileName)) {
         this.allIndices[fileName] = indexed;
       }
+
       this.allFiles[fileName] = fileContent.length;
-      return this.allIndices;
-    }
-    return 'Error: The file is not a correct JSON file!';
+    });
+    return this.allIndices;
   }
   /**
    * Merges search terms of different data types into one array
@@ -154,10 +200,9 @@ class InvertedIndex {
       });
     });
     searchResult[fileName] = searchResultKey;
-    return searchResult;
+    return searchResult[fileName];
   }
 }
 
-module.exports = InvertedIndex;
-// export default InvertedIndex;
-// export default new InvertedIndex();
+export default InvertedIndex;
+
