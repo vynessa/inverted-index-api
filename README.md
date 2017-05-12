@@ -134,7 +134,7 @@ To run the app,
 
 ```
 ## Connecting on Heroku
-* Navigate to this [link](https://.herokuapp.com/) and follow the steps stated above.
+* Navigate to this [link](https://invindex.herokuapp.com/) and follow the steps stated above.
 
 # Contributing
 Contributions are welcome and appreciated. To contribute
