@@ -5,6 +5,7 @@ import istanbul from 'gulp-babel-istanbul';
 import gulpCoveralls from 'gulp-coveralls';
 import babel from 'gulp-babel';
 import injectModules from 'gulp-inject-modules';
+import exit from 'gulp-exit';
 
 const jasmineNodeOpts = {
   timeout: 1000,
@@ -42,7 +43,8 @@ gulp.task('coverage', (cb) => {
       .pipe(jasmineNode())
       .pipe(istanbul.writeReports())
       .pipe(istanbul.enforceThresholds({ thresholds: { global: 30 } }))
-      .on('end', cb);
+      .on('end', cb)
+      .pipe(exit());
     });
 });
 
@@ -53,7 +55,7 @@ gulp.task('test', () => {
 });
 
 // Load code coverage to coveralls
-gulp.task('coveralls', () => {
+gulp.task('coveralls', ['coverage'], () => {
   // If not running on CI environment it won't send lcov.info to coveralls
   if (!process.env.CI) {
     return;
@@ -61,5 +63,3 @@ gulp.task('coveralls', () => {
   return gulp.src('/lcov.info')
     .pipe(gulpCoveralls());
 });
-
-

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../server.js';
-import validFile from '../fixtures/validFile.json';
+// import validFile from '../fixtures/validFile.json';
 
 const api = request(app);
 
@@ -23,4 +23,3 @@ describe('Api create route', () => {
       .expect(200, done);
   });
 });
-
