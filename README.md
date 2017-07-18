@@ -115,7 +115,7 @@ To run the app,
   }
 
 ```
-* If the index is queried, for `eze`, `wonderland` and `world`, the result would be
+* If the index is queried, for `crayons`, `poem` and `colour`, the result would be
 
 ```
 {
@@ -138,6 +138,6 @@ To run the app,
 
 # Contributing
 Contributions are welcome and appreciated. To contribute
-* Fork this repository and peruse [here](https://github.com/Vynessa/inverted-index-api/tree/develop)
+* Fork this repository and peruse [here](https://github.com/Vynessa/inverted-index-api)
 * Submit a pull request if you feel you have substantial updates :)
 * I look forward to your Pull Requests!

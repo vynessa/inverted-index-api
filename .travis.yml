@@ -4,4 +4,5 @@ node_js:
 after_success:
   - npm install
   - npm test
-  # - gulp coverage
+  after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
