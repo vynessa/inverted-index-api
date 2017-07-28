@@ -233,8 +233,6 @@ describe('Inverted Index Suite:', () => {
     });
 
     it('should return in an object a file name as key, and accurate index for every word\'s  occurence in a book', () => {
-      // const newFile = invObj.createIndex('validFile', validFile);
-      // expect(createdIndex).toEqual(newFile);
       expect({
         'validFile.json': {
           go: [ 0 ],

@@ -15,8 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
-app.listen(port, () => {
-  console.log(`Magic happens on port http://localhost:${port}`);
-});
+app.listen(port);
 
 export default app;
