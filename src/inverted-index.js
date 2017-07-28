@@ -90,9 +90,9 @@ class InvertedIndex {
     tokens = InvertedIndex.joinTextTitle(text).split(' ').sort().map((words) => {
       return words.replace(/([^a-z A-Z 0-9]+)/g, '');
     })
-    .filter((e) => {
-      return e;
-    });
+      .filter((e) => {
+        return e;
+      });
     tokens = InvertedIndex.removeDuplicates(tokens);
     return tokens;
   }

@@ -38,20 +38,20 @@ gulp.task('coverage', (cb) => {
     .pipe(istanbul.hookRequire())
     .on('finish', () => {
       gulp.src('tests/inverted-index-test.js')
-      .pipe(babel())
-      .pipe(injectModules())
-      .pipe(jasmineNode())
-      .pipe(istanbul.writeReports())
-      .pipe(istanbul.enforceThresholds({ thresholds: { global: 30 } }))
-      .on('end', cb)
-      .pipe(exit());
+        .pipe(babel())
+        .pipe(injectModules())
+        .pipe(jasmineNode())
+        .pipe(istanbul.writeReports())
+        .pipe(istanbul.enforceThresholds({ thresholds: { global: 30 } }))
+        .on('end', cb)
+        .pipe(exit());
     });
 });
 
 gulp.task('test', () => {
   gulp.src('tests/inverted-index-test.js')
-  .pipe(babel())
-  .pipe(jasmineNode(jasmineNodeOpts));
+    .pipe(babel())
+      .pipe(jasmineNode(jasmineNodeOpts));
 });
 
 // Load code coverage to coveralls
