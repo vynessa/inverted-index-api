@@ -1,9 +1,9 @@
 # inverted-index-api
 An Inverted Index Api for implementing efficient search functionality for software applications.
 
-[![Travis Build](https://travis-ci.org/vynessa/inverted-index-api.svg?branch=back-end)](https://travis-ci.org/Vynessa/inverted-index-api)
+[![Travis Build](https://travis-ci.org/vynessa/inverted-index-api.svg?branch=back-end)](https://travis-ci.org/vynessa/inverted-index-api)
 [![Coverage Status](https://coveralls.io/repos/github/vynessa/inverted-index-api/badge.svg?branch=master)](https://coveralls.io/github/vynessa/inverted-index-api?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5753db48a1b44004bd69b3b88085df2b)](https://www.codacy.com/app/Vynessa/inverted-index-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vynessa/inverted-index-api&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5753db48a1b44004bd69b3b88085df2b)](https://www.codacy.com/app/vynessa/inverted-index-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vynessa/inverted-index-api&amp;utm_campaign=Badge_Grade)
 
 ## Introduction
 Inverted Index API is a NodeJS Powered implementation of the inverted index data structure for finding what word is in what 'book'. A 'book' is an entry in a document structured as a JSON array. Here is a sample document:
