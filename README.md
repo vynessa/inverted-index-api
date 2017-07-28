@@ -58,12 +58,12 @@ To run the app,
 ```
 [
     {
-        "title": "Alice in the wonder land",
-        "text": "I am not as lazy as Alice"
+      'title': 'Queen Premier',
+      'text': 'Is he to go up? Yes, he is to go up.'
     },
     {
-        "title": "Lady",
-        "text": "The lady is 50 years old. SHe has a child"
+      'title': 'Poem',
+      'text': 'Broken crayons still colour.'
     }
 ]
 
